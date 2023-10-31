@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [MainController::class, 'index'])->name('home');
 Route::get('contacts', [MainController::class, 'contacts'])->name('contacts');
 Route::post('contacts', [MainController::class, 'sendEmail'])->name('sendEmail');
+Route::get('products/{slug}', [ProductController::class, 'show'])->name('products.show');
 
 
 

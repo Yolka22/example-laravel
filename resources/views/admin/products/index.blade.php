@@ -41,3 +41,22 @@
         </tbody>
     </table>
 @endsection
+
+@section('content')
+    <h2>Новинки</h2>
+    <div class="row">
+        @foreach ($latestProducts as $product)
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="{{ asset('path-to-product-image/' . $product->image) }}" class="card-img-top" alt="{{ $product->name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $product->name }}</h5>
+                        <p class="card-text">Ціна: {{ $product->price }}</p>
+                        <p class="card-text">Кількість: {{ $product->amount }}</p>
+                        <a href="{{ route('products.show', ['product' => $product->slug]) }}" class="btn btn-primary">Докладніше</a>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+@endsection

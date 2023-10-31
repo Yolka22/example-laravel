@@ -11,10 +11,14 @@ use Illuminate\Support\Facades\Log;
 class ProductController extends Controller
 {
     public function index()
-    {
-        $products = Product::all();
-        return view('admin.products.index', compact('products'));
-    }
+{
+    $latestProducts = Product::latest()->take(4)->get(); // Отримати 4 останніх товари
+
+    $products = Product::all(); // Отримати всі товари (залиште цей рядок для інших потреб)
+
+    return view('admin.products.index', compact('latestProducts', 'products'));
+}
+
     public function destroy($id)
     {
         // Найдите товар по его ID и удалите его
@@ -43,6 +47,12 @@ class ProductController extends Controller
     Log::info('Updated product: ' . $product);
 
    
+}
+
+public function show($slug)
+{
+    $product = Product::where('slug', $slug)->firstOrFail();
+    return view('admin.products.show', compact('product'));
 }
 
 
