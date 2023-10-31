@@ -27,6 +27,7 @@ Route::post('contacts', [MainController::class, 'sendEmail'])->name('sendEmail')
 
 Route::get('admin', [DashboardController::class, 'index'])->name('admin.dashboard');
 Route::delete('admin/products/{product}', [ProductController::class, 'destroy']);
+Route::post('/admin/products/update/{product}', [ProductController::class, 'update']);
 Route::resource('admin/categories', CategoryController::class);
 Route::resource('admin/products', ProductController::class);
 
